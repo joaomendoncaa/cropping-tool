@@ -1,0 +1,413 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,300);
+
+:root {
+    font-size: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*, button, input {
+    font-family: "Roboto", sans-serif;
+    outline: none;
+}
+
+button {
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+
+    background: #E5E5E5;
+
+    overflow: hidden;
+
+    display: grid;
+    grid-template:
+        [row1-start] "header header header" 80px [row1-end]
+        [row2-start] "menu-left menu-right menu-right" 50px [row2-end]
+        [row3-start] "main main main" auto [row3-end]
+        [row4-start] "footer footer footer" 100px [row4-end]
+        / auto auto auto;
+}
+
+header {
+    grid-area: header;
+    padding: .5rem 3rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #222;
+}
+
+header > h1 {
+    opacity: .2;
+
+    color: white;
+
+    font-size: 1.1rem;
+    font-weight: 100;
+}
+
+main {
+    grid-area: main;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: scroll;
+}
+
+/* Custom scrollbar in main */
+
+main::-webkit-scrollbar {
+    width: 11px;
+}
+
+main {
+    scrollbar-width: thin;
+    scrollbar-color: #b8b8b8 transparent;
+    
+}
+
+main::-webkit-scrollbar-track {
+    background: yellow;
+}
+
+main::-webkit-scrollbar-thumb {
+    background-color: green ;
+    border-radius: 6px;
+    border: 3px solid pink;
+}
+
+footer {
+    grid-area: footer;
+    padding: 0rem 3rem;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    background: transparent;
+
+    font-size: .9rem;
+}
+
+footer > span {
+    color: rgb(31, 31, 31);
+}
+
+footer > span > a {
+    text-decoration: none;
+    font-weight: bold;
+    color:  #18A0FB;
+}
+
+.btn-select-image {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    position: relative;
+
+    font-size: 1rem;
+    font-weight: normal;
+
+    border: none;
+
+    background: transparent;
+    color: white;
+
+    transition: transform .1s ease-out;
+}
+
+.btn-select-image:hover {
+    transform: scale(1.1);
+}
+
+.btn-select-image > i  {
+    margin-left: 20px;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+#input-image-picker {
+    display: none;
+}
+
+#img-image-preview {
+    max-width: 750px;
+}
+
+#selection-tool {
+    pointer-events: none;
+    position: absolute;
+    display: none;
+
+    border: 1px dashed white;
+
+    background: rgba(255,255,255,.025);
+}
+
+.btn-menu {
+    margin-right: 30px;
+    transition: transform .2s ease-out;
+}
+
+.btn-menu:hover {
+    transform: scale(1.2);
+}
+
+#svg-menu {
+    opacity: .2;
+    transition: opacity .1s ease-out;
+}
+
+.btn-menu:hover #svg-menu {
+   opacity: 1;
+}
+
+.btn-menu:hover #bar-2, .btn-menu:hover #bar-3 {
+    transition: width .2s ease-in-out;
+    width: 18;
+}
+
+.btn-menu-tool {
+    background: transparent;
+    padding: 5px 10px;
+
+    position: relative;
+    cursor: initial;
+} 
+
+.btn-menu-tool:before {
+    content: '';
+
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 7.5px solid #cecece;
+
+    position: absolute;
+    bottom: -10px;
+    left: 10px;
+    z-index: 2;
+}
+
+.btn-menu-tool:after {
+    content: 'tool selected';
+
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    z-index: 2;
+
+    width: 100px;
+
+    background: #cecece;
+
+    color: white;
+
+    border-radius: 14px;
+    padding: 3px 7px;
+}
+
+.btn-menu-tool > img {
+    width: 20px;
+} 
+
+.selected-tool {
+    background-color: #18A0FB;
+}
+
+.menu-left {
+    grid-area: menu-left;
+    display: flex;
+
+    padding-left: 3rem;
+
+    background-color: #303030;
+}
+
+.menu-right {
+    padding: .5rem 3rem .5rem 0rem; 
+
+    grid-area: menu-right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    background-color: #303030;
+}
+
+.menu-right > button {
+    margin-left: 20px;
+    transition: transform .2s ease-out;
+}
+
+.menu-right > button:hover {
+    transform: scale(1.05);
+}
+
+.btn-crop-image {
+    display: none;
+    width: 175px;
+
+    color: white;
+    font-weight: 600;
+
+    border-radius: 10px;
+
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: #18A0FB;
+
+    padding: .5rem 1.5rem;
+}
+
+.btn-save-image {
+    display: none;
+    width: 175px;
+
+    color: white;
+    font-weight: 600;
+    
+    border-radius: 10px;
+
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: #18A0FB;
+
+    padding: .5rem 1.5rem;
+}
+
+.btn-clear-canvas {
+    display: none;
+    width: 175px;
+
+    color: white;
+    font-weight: 600;
+    
+    border-radius: 10px;
+
+    justify-content: space-around;
+    align-items: center;
+ 
+    background-color: #18A0FB;
+
+    padding: .5rem 1.5rem;
+}
+
+.btn-clear-canvas > img, .btn-crop-image > img, .btn-save-image > img {
+    width: 20px;
+}
+
+.btn-clear-canvas > span, .btn-crop-image > span, .btn-save-image > span {
+    min-width: 70px;
+}
+
+
+#no-image {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    animation: fade-in 1s forwards ease-out;
+}
+
+@keyframes fade-in {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#no-image > img {
+    width: 200px;
+    margin-bottom: 30px;
+}
+
+
+#no-image > h1 {
+    color: #c7c7c7;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#no-image > span {
+    color: #D0D0D0;
+    font-weight: 500;
+}
+
+#img-image-preview {
+    display: none;
+}
+
+.responsive-error {
+    display: none;
+}
+
+@media (max-width: 1100px) {
+    html, body {
+        background: #E5E5E5;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    body > *:not(.responsive-error) {
+        display: none;
+    }
+
+    .responsive-error {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+
+        opacity: .6;
+    }
+
+    .responsive-error > .fas {
+        margin-bottom: 30px;
+        font-size: 4rem;
+        font-weight: bold;
+        color:  #18A0FB;
+    }
+
+    .responsive-error > span {
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: rgb(14, 14, 14);
+    }
+
+    #no-image {
+        display: none !important;
+    }
+}

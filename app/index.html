@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+    <title>Image Croping Tool</title>
+</head>
+<body>
+    <!-- Responsivness not available -->
+    <div class="responsive-error">
+        <i class="fas fa-desktop"></i>
+        <span>This content is only available in bigger screens at the moment</span>
+    </div>
+
+    <header>
+        <h1>Image Croping Tool</h1>
+        <button class="btn-select-image">
+            <input type="file" id="input-image-picker">
+            Add Image
+            <i class="fas fa-plus"></i>
+        </button>
+    </header>
+
+    <div class="menu-left">
+        <button class="btn-menu">
+            <svg id="svg-menu" width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect id="bar-3" y="12" width="8" height="3" fill="#fff"/>
+                <rect id="bar-2" y="6" width="14" height="3" fill="#fff"/>
+                <rect id="bar-1" width="18" height="3" fill="#fff"/>
+            </svg>
+        </button>
+
+        <button class="btn-menu-tool selected-tool">  
+            <img src="img/selection-square.svg" alt="selection-square">
+        </button>
+    </div>
+
+    <div class="menu-right">
+        <button class="btn-clear-canvas">
+            <img src="img/icon-clear-canvas.svg" alt="Clear Canvas Icon">
+            <span>Clear Canvas</span>
+        </button>
+        <button class="btn-crop-image">
+            <img src="img/icon-crop-image.svg" alt="Crop Icon">
+            <span>Crop Selection</span>
+        </button>
+        <button class="btn-save-image">
+            <img src="img/icon-save-image.svg" alt="Save Icon">
+            <span>Save Image</span>
+        </button>
+    </div>
+
+    <main>
+        <img id="img-image-preview" draggable="false">
+        <div id="selection-tool"></div>
+    </main>
+    
+    <section id="no-image">
+        <img src="img/icon-no-image.svg" alt="No image selected Icon">
+        <h1>There's no image selected</h1>
+        <span>click on the top right to add an image to get chopped</span>
+    </section>
+   
+    <footer>
+        <span>Crafted with 💙 by <a href="">joaomendonca</a></span>
+    </footer>
+</body>
+</html>
